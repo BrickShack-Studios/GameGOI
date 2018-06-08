@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pull Up.wav-0ec17541b994500a8b916374d16c4ccd.sample"
+
+[deps]
+
+source_file="res://Audio/Pull Up.wav"
+source_md5="7e346bf1c2d411cdd7623bc172a5c245"
+
+dest_files=[ "res://.import/Pull Up.wav-0ec17541b994500a8b916374d16c4ccd.sample" ]
+dest_md5="0de271950c34ad5cff7660bff1b0b151"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
