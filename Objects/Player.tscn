@@ -1,69 +1,62 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Benny/Idle.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Benny/Hang.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Benny/Slide1.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Benny/Slide3.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Benny/Slide2.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Benny/Fall1.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Benny/Fall2.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Benny/Jump1.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Benny/Jump2.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Benny/pullUp2.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Benny/pullUp3.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/Benny/pullUp4.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Background.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/Background2.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Benny/Jump1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Benny/Jump2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Benny/pullUp2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Benny/pullUp3.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Benny/pullUp4.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Benny/Slide1.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Benny/Slide3.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Benny/Slide2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Benny/Hang.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Benny/Fall1.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Benny/Fall2.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Benny/Idle.png" type="Texture" id=13]
+[ext_resource path="res://Objects/ParallaxLayer.gd" type="Script" id=14]
+[ext_resource path="res://Sprites/Background.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Background2.png" type="Texture" id=16]
 
 [sub_resource type="CapsuleShape2D" id=1]
-
-custom_solver_bias = 0.0
 radius = 4.0
 height = 6.0
 
 [sub_resource type="SpriteFrames" id=2]
-
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": false,
-"name": "Idle",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": false,
-"name": "Hang",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "Slide",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "Fall",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": false,
 "name": "Jump",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "PullUp",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Slide",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": false,
+"name": "Hang",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "Idle",
+"speed": 1.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
-
-input_pickable = false
 collision_layer = 2
-collision_mask = 1
-collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -74,137 +67,67 @@ acceleration = 1000
 friction = 0.2
 afterjumpTime = 0.21
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="AnimatedSprite" parent="." index="1"]
-
+[node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "Idle"
-_sections_unfolded = [ "Offset" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
-
-anchor_mode = 1
-rotating = false
+[node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
 drag_margin_left = 0.1
 drag_margin_top = 0.1
 drag_margin_right = 0.1
 drag_margin_bottom = 0.1
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
-_sections_unfolded = [ "Drag Margin", "Transform" ]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D" index="0"]
-
-layer = -1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-scroll_offset = Vector2( 0, 0 )
-scroll_base_offset = Vector2( 0, 0 )
-scroll_base_scale = Vector2( 1, 1 )
-scroll_limit_begin = Vector2( 0, 0 )
-scroll_limit_end = Vector2( 0, 0 )
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
 scroll_ignore_camera_zoom = true
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="0"]
-
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2( 0.1, 0.1 )
-motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 256, 256 )
-_sections_unfolded = [ "Motion" ]
+script = ExtResource( 14 )
 
-[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/ParallaxLayer" index="0"]
-
-texture = ExtResource( 14 )
+[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 15 )
 centered = false
-_sections_unfolded = [ "Offset", "Region" ]
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="1"]
-
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2( 0.07, 0.07 )
-motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 256, 256 )
-_sections_unfolded = [ "Motion" ]
+script = ExtResource( 14 )
 
-[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/ParallaxLayer2" index="0"]
-
-texture = ExtResource( 15 )
+[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 16 )
 centered = false
-_sections_unfolded = [ "Offset" ]
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="2"]
-
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2( 0.04, 0.04 )
-motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 256, 256 )
-_sections_unfolded = [ "Motion" ]
+script = ExtResource( 14 )
 
-[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/ParallaxLayer3" index="0"]
-
-texture = ExtResource( 15 )
+[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 16 )
 centered = false
-_sections_unfolded = [ "Offset" ]
 
-[node name="Afterjump" type="Timer" parent="." index="3"]
-
-process_mode = 1
-wait_time = 1.0
+[node name="Afterjump" type="Timer" parent="."]
 one_shot = true
-autostart = false
 
-[node name="LedgeRay" type="RayCast2D" parent="." index="4"]
-
+[node name="LedgeRay" type="RayCast2D" parent="."]
 rotation = -1.5708
 enabled = true
-exclude_parent = true
 cast_to = Vector2( 0, 5 )
 collision_mask = 4
-_sections_unfolded = [ "Transform" ]
 
-[node name="Tween" type="Tween" parent="." index="5"]
+[node name="Tween" type="Tween" parent="."]
 
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-
-[node name="SlipTimer" type="Timer" parent="." index="6"]
-
-process_mode = 1
+[node name="SlipTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
-autostart = false
 
-[node name="MovementAudio" type="AudioStreamPlayer" parent="." index="7"]
-
-stream = null
-volume_db = 0.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
+[node name="MovementAudio" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="timeout" from="Afterjump" to="." method="_on_Afterjump_timeout"]
-
-

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/14 Dunes at Night.ogg-f85f975b6884263358f9393d28ecb5f8.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/14 Dunes at Night.ogg"
+dest_files=[ "res://.import/14 Dunes at Night.ogg-f85f975b6884263358f9393d28ecb5f8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

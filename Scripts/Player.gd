@@ -19,13 +19,14 @@ var State = States.IDLE
 const UP = Vector2(0, -1)
 const MAX_INCLINE = sin(deg2rad(50))
 
-var SHUFFLE_SOUND = load("res://Audio/Shuffle.wav")
-var JUMP_SOUND = load("res://Audio/Jump.wav")
-var PULL_UP_SOUND = load("res://Audio/Pull Up.wav")
-var BOINK_SOUND = load("res://Audio/Boink.wav")
+var SHUFFLE_SOUND = preload("res://Audio/Sound Effects/Shuffle.wav")
+var JUMP_SOUND = preload("res://Audio/Sound Effects/Jump.wav")
+var PULL_UP_SOUND = preload("res://Audio/Sound Effects/Pull Up.wav")
+var BOINK_SOUND = preload("res://Audio/Sound Effects/Boink.wav")
 
 var velocity = Vector2()
 var afterjumpReady = false
+var slideSoundReady = true
 var cameraDirection = "Left" #Wrong on purpose
 
 var resetPos = Vector2()
@@ -35,11 +36,11 @@ func _ready():
 	return
 	
 func playSound():
-	if (State == States.RUNNING):
-		if ($MovementAudio.stream != SHUFFLE_SOUND):
-			$MovementAudio.stream = SHUFFLE_SOUND
-		if (!$MovementAudio.playing):
-			$MovementAudio.play()
+#	if (State == States.RUNNING):
+#		if ($MovementAudio.stream != SHUFFLE_SOUND):
+#			$MovementAudio.stream = SHUFFLE_SOUND
+#		if (!$MovementAudio.playing):
+#			$MovementAudio.play()
 	return
 
 func playSoundOnce(sound):
@@ -70,6 +71,9 @@ func animate():
 	match State:
 		States.RUNNING:
 			$Sprite.play("Slide")
+			if (slideSoundReady):
+				playSoundOnce(SHUFFLE_SOUND)
+				slideSoundReady = false
 		States.IDLE:
 			$Sprite.play("Idle")
 		States.JUMPING:
@@ -135,6 +139,7 @@ func control(delta):
 			
 			if (is_on_floor()):
 				State = States.IDLE
+				slideSoundReady = true
 	
 	#Afterjump preparations
 	if (is_on_floor()):
@@ -219,8 +224,8 @@ func _physics_process(delta):
 		for i in range(get_slide_count()):
 			if (get_slide_collision(i).collider.has_method("isBouncy")):
 				State = States.SLIPPING
-				velocity = get_slide_collision(i).normal * 1 * abs(velocity.y)
-				velocity.x += 1 * get_slide_collision(i).normal.x + (abs(velocity.y) * get_slide_collision(i).normal.x) / 3
+				velocity = get_slide_collision(i).normal * 1 * velocity.length()
+				#velocity.x += 1 * get_slide_collision(i).normal.x + (abs(velocity.y) * get_slide_collision(i).normal.x) / 3
 				$SlipTimer.start()
 				playSoundOnce(BOINK_SOUND)
 	#get_slide_count() only updates on move_and_slide
@@ -247,7 +252,15 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, UP)
 	#printState()
 	return
+	
+func resetPosition():
+	position = resetPos
+	return
 
 func _on_Afterjump_timeout():
 	afterjumpReady = false
 	return
+
+
+func _on_Sprite_animation_finished():
+	slideSoundReady = true

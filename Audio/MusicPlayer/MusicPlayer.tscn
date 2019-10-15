@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Audio/MusicPlayer/MusicPlayer.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 74, 61 )
+
+[node name="MusicPlayer" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="area_entered" from="." to="." method="_on_MusicPlayer_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_MusicPlayer_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_MusicPlayer_body_exited"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

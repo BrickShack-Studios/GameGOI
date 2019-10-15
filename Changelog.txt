@@ -1,0 +1,20 @@
+0.0.4 (???):
+	- Tweaked slider bug where bouncing off of them was really unpredictable.
+	Before, you traveled along the normal vector of the wedge with a magnitude
+	of your current `y` velocity. Now, your velocity vector is just rotated to
+	align with the normal vector of the collision. This should result in more
+	sensible bouncing.
+	- Lowered the incredibly loud volume of the sound effects.
+	- Scrolling clouds
+	- BGM and Title Music
+	- Title area
+
+0.0.3 (June ??, 2018):
+	- Synchronized shuffle sound with animation
+
+0.0.2 (June 7th, 2018):
+	- Added helper obstacles to the ground 
+	- Added pullup and slip sound effects
+
+0.0.1 (June 4th, 2018):
+	- Initial launch on BrickHub!

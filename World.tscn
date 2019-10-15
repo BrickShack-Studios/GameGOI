@@ -5,22 +5,15 @@
 [ext_resource path="res://Objects/Ledges.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/Sliders.tscn" type="PackedScene" id=4]
 
-[node name="World" type="Node2D" index="0"]
+[node name="World" type="Node2D"]
 
-[node name="Player" parent="." index="0" instance=ExtResource( 1 )]
-
+[node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1648, 192 )
 
-[node name="Terrain" parent="." index="1" instance=ExtResource( 2 )]
-
+[node name="Terrain" parent="." instance=ExtResource( 2 )]
 collision_mask = 2
-_sections_unfolded = [ "Cell", "Collision" ]
 
-[node name="Ledges" parent="." index="2" instance=ExtResource( 3 )]
+[node name="Ledges" parent="." instance=ExtResource( 3 )]
 
-[node name="Sliders" parent="." index="3" instance=ExtResource( 4 )]
-
+[node name="Sliders" parent="." instance=ExtResource( 4 )]
 collision_mask = 2
-_sections_unfolded = [ "Cell", "Collision" ]
-
-
